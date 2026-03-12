@@ -1,22 +1,21 @@
 import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
 import { LoginInput } from "../../components/login-page/login-input/input.component";
 import { FormControl } from "@angular/forms";
-import { LoginService } from "../../service/login-service.service";
+import { AuthService } from "../../service/auth-service.service";
 
 @Component({
   templateUrl: "./login-page.component.html",
   imports: [LoginInput]
 })
 export class LoginPage {
-  constructor(private loginService: LoginService){
+  constructor(private authService: AuthService){
 
   }
   username = new FormControl("")
   password = new FormControl("")
   login(event: SubmitEvent){
     event.preventDefault()
-    this.loginService.login({
+    this.authService.login({
       username: this.username.value || "",
       password: this.password.value || ""
     }).subscribe({
