@@ -3,7 +3,8 @@ import { environment } from '../environements/environement';
 
 export const ApiBase : HttpInterceptorFn = (req, next) => {
   const apiReq = req.clone({
-    url: `${environment.apiUrl}${req.url}`
+    url: `${environment.apiUrl}${req.url}`,
+    withCredentials: true
   });
   return next(apiReq);
 };

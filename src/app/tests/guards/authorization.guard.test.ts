@@ -5,7 +5,6 @@ import { AuthService } from '../../../service/auth-service.service';
 import { MockAuthServiceBestCase } from '../mocks/service/auth-service.service.mock';
 import { GuardResult, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
