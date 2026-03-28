@@ -2,9 +2,10 @@ import { Routes } from '@angular/router';
 import { LandingPage } from '../pages/landing-page/landing-page.component';
 import { LoginPage } from '../pages/login-page/login-page.component';
 import { DashboardPage } from '../pages/dashboard-page/dashboard-page.component';
-import { RibonColorsPage } from '../pages/dashboard-page/ribon-colors-page/ribon-colors-page.component';
 import { AuthorizationGuard } from '../guards/authorization.guard';
 import { ForbiddenPage } from '../pages/forbidden/forbidden-page.component';
+import { RibonColorPage } from '../pages/dashboard-page/ribon-color-page/ribon-color-page.component';
+import { RibonColorSetPage } from '../pages/dashboard-page/ribon-color-set-page/ribon-color-set-page.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +20,10 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardPage,
     canActivate: [AuthorizationGuard],
-    children: [{ path: 'ribonColors', component: RibonColorsPage }],
+    children: [
+      { path: 'ribon-colors', component: RibonColorPage},
+      { path: 'ribon-color-sets', component: RibonColorSetPage}
+    ],
   },
   {
     path: 'forbidden',

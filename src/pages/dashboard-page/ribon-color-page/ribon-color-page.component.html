@@ -1,0 +1,9 @@
+<div>
+  <form action="" (submit)="createRibonColor($event)" [formGroup]="createOrUpdateRibonColorForm">
+    <input type="text" formControlName="name">
+    <input type="color" formControlName="color">
+    <button>submit</button>
+  </form>
+  <div>{{createOrUpdateRibonColorForm.value | json}}</div>
+  ribon color
+</div>
