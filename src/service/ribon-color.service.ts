@@ -16,4 +16,9 @@ export class RibonColorService {
       params: query
     });
   }
+  deleteRibonColorSet(arg: {
+    ribonColorId: string
+  }){
+    return this.httpClient.delete(`/ribon-color/delete/${arg.ribonColorId}`)
+  }
 }

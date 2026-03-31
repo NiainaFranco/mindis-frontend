@@ -22,6 +22,12 @@ export class RibonColorSetService {
     return this.httpClient.post("/ribon-color-set/create", arg.ribonColorSet);
   }
 
+  deleteRibonColorSet(arg: {
+    ribonColorSetId: string
+  }){
+    return this.httpClient.delete(`/ribon-color-set/delete/${arg.ribonColorSetId}`)
+  }
+
   updateRibonColorSet(arg: {
     ribonColorSet: UpdateRibonColorSetType
   }){
