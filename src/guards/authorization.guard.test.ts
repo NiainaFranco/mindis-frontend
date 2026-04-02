@@ -1,8 +1,8 @@
-import { AuthorizationGuard } from '../../../guards/authorization.guard';
+import { AuthorizationGuard } from './authorization.guard';
 import { TestBed } from "@angular/core/testing";
 import {describe, expect, it, test, vi, beforeEach} from "vitest";
-import { AuthService } from '../../../service/auth-service.service';
-import { MockAuthServiceBestCase } from '../mocks/service/auth-service.service.mock';
+import { AuthService } from '../service/auth-service.service';
+import { MockAuthServiceBestCase } from '../app/tests/mocks/service/auth-service.service.mock';
 import { GuardResult, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
