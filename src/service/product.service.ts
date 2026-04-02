@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetProductType } from '../types/get-product.type';
+import { PaginationMetaWrapper } from '../types/pagination-meta-wrapper.type';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
@@ -25,7 +26,7 @@ export class ProductService {
     return this.httpClient.patch<GetProductType>('/product/update', formData);
   }
   getAllPaginated(query: { page: number; name: string }) {
-    return this.httpClient.get<GetProductType[]>('/product/get-all', {
+    return this.httpClient.get<PaginationMetaWrapper<GetProductType>>('/product/get-all', {
       params: query,
     });
   }

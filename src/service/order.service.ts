@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetOrderType } from '../types/get-order.type';
 import { CreateProductOrderType } from '../types/create-product-order';
+import { PaginationMetaWrapper } from '../types/pagination-meta-wrapper.type';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -21,7 +22,7 @@ export class OrderService {
   }
 
   getAllPaginated(query: { page: number; contact?: string; name?: string }) {
-    return this.httpClient.get<GetOrderType[]>('/order/get-all', {
+    return this.httpClient.get<PaginationMetaWrapper<GetOrderType>>('/order/get-all', {
       params: query,
     });
   }

@@ -1,1 +1,8 @@
-<p>ribon-color-landing-page works!</p>
+
+<div>
+  @if(ribonColorsRessource$.status() == "resolved"){
+    @for (ribonColor of ribonColorsRessource$.value()?.data; track $index) {
+      <h1>{{ ribonColor.name }}</h1>
+    }
+  }
+</div>
