@@ -33,6 +33,4 @@ export class RibonColorSetService {
   }){
     return this.httpClient.patch("/ribon-color-set/update", arg.ribonColorSet)
   }
-
-
 }
