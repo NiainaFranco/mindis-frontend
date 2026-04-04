@@ -1,4 +1,38 @@
-<div>
-  hello from dashboard page
-  <router-outlet></router-outlet>
+<div class="h-[100vh]">
+  <mat-sidenav-container class="h-full">
+    <mat-sidenav  mode="side" class="!w-[200px]" opened>
+      <ul class="h-full w-full p-2 flex-col flex justify-between">
+        <div>
+          <a routerLink="/dashboard" class="text-xl" >
+            Dashboard
+          </a>
+          <div>
+            <mat-nav-list>
+              <ul>
+                <li>
+                  <a routerLink="/dashboard/ribon-color" mat-list-item>
+                    Ribon colors
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/dashboard/ribon-color-set/" mat-list-item>
+                    Ribon colors sets
+                  </a>
+                </li>
+              </ul>
+            </mat-nav-list>
+          </div>
+
+        </div>
+        <div class="h-[64px] w-full flex justify-center pt-3">
+          <button matButton="elevated" class="w-full" >Log out</button>
+        </div>
+      </ul>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

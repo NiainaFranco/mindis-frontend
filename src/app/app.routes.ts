@@ -16,6 +16,7 @@ import { EditProductPage } from '../pages/dashboard-page/product/edit-product-pa
 import { ProductLandingPage } from '../pages/dashboard-page/product/product-landing-page/product-landing-page';
 import { CreateProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/create-product-ribon-color-presentation-page/create-product-ribon-color-presentation-page';
 import { EditProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/edit-product-ribon-color-presentation-page/edit-product-ribon-color-presentation-page';
+import { DashboardLandingPage } from '../pages/dashboard-page/dashboard-landing-page/dashboard-landing-page';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
     component: DashboardPage,
     canActivate: [AuthorizationGuard],
     children: [
+      {
+        path: '',
+        component: DashboardLandingPage,
+      },
       { path: 'ribon-color', component: RibonColorLandingPage },
       {
         path: 'ribon-color-set',
@@ -55,7 +60,7 @@ export const routes: Routes = [
           {
             path: 'edit/:id',
             children: [
-              { path: '', component: EditProductPage},
+              { path: '', component: EditProductPage },
               {
                 path: 'product-ribon-color-presentation/create',
                 component: CreateProductRibonColorPresentationPage,
