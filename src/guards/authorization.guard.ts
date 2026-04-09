@@ -19,8 +19,8 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild{
         }
       }),
       catchError(()=>{
-        // this.router.navigate(['/'])
-        return of(true)
+        this.router.navigate(['/forbidden'])
+        return of(false)
       })
     );
   }
@@ -35,7 +35,7 @@ export class AuthorizationGuard implements CanActivate, CanActivateChild{
         }
       }),
       catchError(()=>{
-        this.router.navigate(['/'])
+        this.router.navigate(['/forbidden'])
         return of(false)
       })
     );

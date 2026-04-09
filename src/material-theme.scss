@@ -6,14 +6,20 @@
 @use '@angular/material' as mat;
 @use './scss/buttons';
 @use './scss/anchors';
+@use './scss/sidenav';
+@use './scss/theme/theme-colors.scss' as palette;
 
+:root{
+  --primary-color: #6D15F9;
+  --secondary-color: #F9DE15;
+}
 html {
   height: 100%;
   @include mat.theme(
     (
       color: (
-        primary: mat.$rose-palette,
-        tertiary: mat.$red-palette,
+        primary: palette.$primary-palette,
+        tertiary: palette.$tertiary-palette,
       ),
       typography: Roboto,
       density: 0,

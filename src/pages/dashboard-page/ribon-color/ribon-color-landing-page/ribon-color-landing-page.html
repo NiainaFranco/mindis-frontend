@@ -1,7 +1,10 @@
 <div>
+  <app-breadcrumb [links]="breadCrumbRoutes"></app-breadcrumb>
+<div>
   @if(ribonColorsRessource$.status() == "resolved"){
     @for (ribonColor of ribonColorsRessource$.value()?.data; track $index) {
       <h1>{{ ribonColor.name }}</h1>
     }
   }
+</div>
 </div>

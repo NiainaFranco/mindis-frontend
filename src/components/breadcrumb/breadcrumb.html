@@ -1,0 +1,8 @@
+<div class="p-3 border-b border-b-gray-300 shadow-md">
+  <div class="flex gap-3 items-center">
+    @for(link of links.sort((a,b)=>(a.order - b.order));track $index){
+     <a [href]="link.href">{{link.routeName}}</a>
+     <div> - </div>
+    }
+  </div>
+</div>
