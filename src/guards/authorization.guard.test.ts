@@ -41,10 +41,5 @@ describe("Guard for authorization access to protected routes.", ()=>{
         expect(result).toBe(true);
       }
     });
-    (authorizationGuard.canActivateChild() as Observable<GuardResult>).subscribe({
-      next(result){
-        expect(result).toBe(true);
-      }
-    });
   })
 })

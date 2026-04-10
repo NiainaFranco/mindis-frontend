@@ -7,7 +7,7 @@
 @use './scss/buttons';
 @use './scss/anchors';
 @use './scss/sidenav';
-@use './scss/theme/theme-colors.scss' as palette;
+@use './scss/theme/theme-colors' as palette;
 
 :root{
   --primary-color: #6D15F9;
