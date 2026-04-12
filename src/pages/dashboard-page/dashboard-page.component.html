@@ -1,33 +1,33 @@
 <div class="h-[100vh]">
   <mat-sidenav-container colo class="h-full">
-    <mat-sidenav  mode="side" opened>
-      <ul  class="h-full w-full p-2 flex-col flex  justify-between">
+    <mat-sidenav  mode="side" opened class="app-sidenav">
+      <div class="h-full w-full p-2 flex-col flex  justify-between">
         <div>
-          <a routerLink="/dashboard" class="text-2xl block w-full p-2" >
+          <a routerLink="/dashboard" class="text-3xl block w-full p-2">
             Dashboard
           </a>
           <div>
-            <mat-nav-list>
-              <ul>
-                <li>
-                  <a routerLink="/dashboard/ribon-color" mat-list-item>
-                    Ribon colors
-                  </a>
-                </li>
-                <li>
-                  <a routerLink="/dashboard/ribon-color-set/" mat-list-item>
-                    Ribon colors sets
-                  </a>
-                </li>
-              </ul>
+            <mat-nav-list class="[&>*]:text-lg [&_a]:flex [&_a]:w-full [&_a]:h-full">
+              <mat-list-item>
+                <span matListItemIcon>
+                  <mat-icon svgIcon="dashboard:home"></mat-icon>
+                </span>
+                <a routerLink="/dashboard/ribon-color" matListItemTitle>
+                  Ribon colors
+                </a>
+              </mat-list-item>
+              <mat-list-item>
+                <a routerLink="/dashboard/ribon-color-set/" matListItemTitle>
+                  Ribon colors sets
+                </a>
+              </mat-list-item>
             </mat-nav-list>
           </div>
-
         </div>
         <div class="h-[64px] w-full flex justify-center pt-3">
           <button matButton="elevated" class="w-full" >Log out</button>
         </div>
-      </ul>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <div>

@@ -3,8 +3,11 @@
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
 :root {
   @include mat.list-overrides((
-    active-indicator-color: orange,
-    active-indicator-shape: 16px,
     list-item-label-text-color: white,
+    list-item-disabled-label-text-color: white,
+    list-item-hover-label-text-color:white,
+    list-item-hover-state-layer-color:white,
+    list-item-container-shape:0,
+    list-item-hover-state-layer-opacity:0.2
   ));
 }

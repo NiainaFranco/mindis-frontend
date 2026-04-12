@@ -1,8 +1,16 @@
 @use '@angular/material' as mat;
+@use './theme/theme-colors' as theme;
+@use 'sass:map';
 
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
 :root {
   @include mat.button-overrides((
 
+  ));
+}
+
+.warn-btn {
+  @include mat.button-overrides((
+    filled-container-color:map.get(theme.$primary-palette, error, 50),
   ));
 }

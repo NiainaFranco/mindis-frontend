@@ -8,5 +8,7 @@ export type PaginationMeta = {
   isLastPage: boolean,
   currentPage: number
   previousPage: number,
+  pageCount: number,
+  totalCount: number,
   nextPage: number
 }

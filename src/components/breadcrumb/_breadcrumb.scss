@@ -1,0 +1,10 @@
+@use "../../scss/theme/theme-colors" as theme;
+@use "sass:map";
+
+.app-breadcrumb-separator {
+  width: 3px;
+  height: 20px;
+  display: block;
+  border-radius: 10px;
+  background-color: map.get(theme.$primary-palette, 40);
+}

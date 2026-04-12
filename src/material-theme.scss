@@ -8,6 +8,8 @@
 @use './scss/anchors';
 @use './scss/sidenav';
 @use './scss/theme/theme-colors' as palette;
+@use './scss/list-item';
+@use './scss/tables';
 
 :root{
   --primary-color: #6D15F9;
@@ -21,7 +23,6 @@ html {
         primary: palette.$primary-palette,
         tertiary: palette.$tertiary-palette,
       ),
-      typography: Roboto,
       density: 0,
     )
   );

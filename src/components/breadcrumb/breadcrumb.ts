@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { MatAnchor, MatButton } from "@angular/material/button";
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [],
+  imports: [MatAnchor, MatButton],
   templateUrl: './breadcrumb.html',
-  styleUrl: './breadcrumb.css',
+  styleUrl: './_breadcrumb.scss',
 })
 export class Breadcrumb {
   @Input()
@@ -13,6 +14,6 @@ export class Breadcrumb {
 
 export type BreadCrumbLinkType = {
   order: number
-  href: string
+  href?: string
   routeName: string
 }
