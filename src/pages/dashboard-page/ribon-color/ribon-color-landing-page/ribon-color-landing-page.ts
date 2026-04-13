@@ -8,6 +8,7 @@ import { JsonPipe } from '@angular/common';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MatAnchor } from "@angular/material/button";
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ribon-color-landing-page',
