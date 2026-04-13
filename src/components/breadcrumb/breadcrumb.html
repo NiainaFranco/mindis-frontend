@@ -3,7 +3,7 @@
     @for(link of links.sort((a,b)=>(a.order - b.order));track $index){
      <a [href]="link.href" [disabled]="!link.href" matButton="text" class="block">{{link.routeName}}</a>
       @if($index < (links.length - 1) ){
-         <span class="app-breadcrumb-separator"></span>
+        <mat-icon svgIcon="breadcrumb:chevron-right"></mat-icon>
       }
     }
   </div>

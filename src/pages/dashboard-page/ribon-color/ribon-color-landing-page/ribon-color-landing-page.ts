@@ -10,38 +10,75 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { MatAnchor, MatFabButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { IconsService } from '../../../../service/icons.service';
+import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
+import { PaginationMetaWrapper } from '../../../../types/pagination-meta-wrapper.type';
+import { GetRibonColor } from '../../../../types/get-ribon-color.type';
+import { MatFormField } from "@angular/material/select";
+import { AppTableSearchInput } from "../../../../components/app-table-search-input/app-table-search-input";
 
 @Component({
   selector: 'app-ribon-color-landing-page',
-  imports: [Breadcrumb, MatPaginatorModule, MatTableModule , MatMiniFabButton, MatIcon],
+  imports: [Breadcrumb, MatPaginatorModule, MatSort, MatTableModule, MatMiniFabButton, MatIcon, MatSortHeader, MatFormField, AppTableSearchInput],
   templateUrl: './ribon-color-landing-page.html',
   styleUrl: './ribon-color-landing-page.css',
 })
 export class RibonColorLandingPage {
-  constructor(private ribonColorService: RibonColorService) {
+  constructor(private ribonColorService: RibonColorService) {}
+  handlePageEvent(event: PageEvent) {
+    this.page.set(event.pageIndex);
+    this.perPage.set(event.pageSize);
   }
-  handlePageEvent(event: PageEvent){
-    this.page.set(event.pageIndex)
-    this.perPage.set(event.pageSize)
+
+  handleSearch(){
+
   }
-  breadCrumbRoutes: BreadCrumbLinkType[]=[{
-    href: "/dashboard/ribon-color",
-    order: 1,
-    routeName: "Ribon colors"
-  }]
+
+  handleFilterByName(event: Event){
+    const value = (event.target as HTMLInputElement).value;
+    const values = this.ribonColorsRessource$.value() as PaginationMetaWrapper<GetRibonColor>;
+    const toFilter = values.data
+    if(values){
+      const filtered = [...toFilter.filter((i)=>(i.name.includes(value)))]
+      this.ribonColorsData$.set([...filtered]);
+    }
+  }
+
+  handleFilterSort(event: Sort){
+    const values = this.ribonColorsRessource$.value() as PaginationMetaWrapper<GetRibonColor>;
+    const toSort = values.data
+    if(values){
+      this.ribonColorsData$.update( () => {
+        const sorted = [...toSort.sort()];
+        const isNeutral = event.direction === ""
+        const isAsc = event.direction === "asc"
+        return isNeutral ? [...toSort] : (isAsc ? [...sorted] : [...sorted.reverse()])
+      });
+    }
+  }
+
+  breadCrumbRoutes: BreadCrumbLinkType[] = [
+    {
+      href: '/dashboard/ribon-color',
+      order: 1,
+      routeName: 'Ribon colors',
+    },
+  ];
   page = signal(1);
   perPage = signal(50);
   nameToSearch = signal('');
-  ribonColorsHeaders$ = ["name", "color", "actions" ]
-  ribonColorsRessource$ = rxResource({
+  ribonColorsData$ = signal<GetRibonColor[]>([])
+  ribonColorsHeaders$ = ['name', 'color', 'actions'];
+  ribonColorsRessource$ = resource({
     params: () => ({ page: this.page(), name: this.nameToSearch(), perPage: this.perPage() }),
-    stream: ({ params }) => {
+    loader: async ({ params }) => {
       const obs = this.ribonColorService.getAllWithPagination({
         page: params.page,
         name: params.name,
-        perPage: params.perPage
+        perPage: params.perPage,
       });
-      return obs;
+      const value = await firstValueFrom(obs);
+      this.ribonColorsData$.set([...value.data]);
+      return value;
     },
   });
 }
