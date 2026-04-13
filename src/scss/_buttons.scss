@@ -14,3 +14,12 @@
     filled-container-color:map.get(theme.$primary-palette, error, 50),
   ));
 }
+
+.warn-fab-btn{
+  @include mat.fab-overrides((
+   small-container-color:map.get(theme.$primary-palette, error, 50),
+   container-color:map.get(theme.$primary-palette, error, 50),
+   small-ripple-color:map.get(theme.$primary-palette, error, 40),
+   small-foreground-color: map.get(theme.$primary-palette, error, 40)
+  ))
+}

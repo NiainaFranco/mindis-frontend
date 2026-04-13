@@ -7,17 +7,19 @@ import { MatTableModule } from '@angular/material/table';
 import { JsonPipe } from '@angular/common';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { MatAnchor } from "@angular/material/button";
-import { MatIconModule } from '@angular/material/icon';
+import { MatAnchor, MatFabButton, MatMiniFabButton } from "@angular/material/button";
+import { MatIconModule, MatIcon } from '@angular/material/icon';
+import { IconsService } from '../../../../service/icons.service';
 
 @Component({
   selector: 'app-ribon-color-landing-page',
-  imports: [Breadcrumb, MatPaginatorModule, MatTableModule, MatAnchor],
+  imports: [Breadcrumb, MatPaginatorModule, MatTableModule , MatMiniFabButton, MatIcon],
   templateUrl: './ribon-color-landing-page.html',
   styleUrl: './ribon-color-landing-page.css',
 })
 export class RibonColorLandingPage {
-  constructor(private ribonColorService: RibonColorService) {}
+  constructor(private ribonColorService: RibonColorService) {
+  }
   handlePageEvent(event: PageEvent){
     this.page.set(event.pageIndex)
     this.perPage.set(event.pageSize)

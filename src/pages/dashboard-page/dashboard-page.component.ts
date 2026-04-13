@@ -29,5 +29,6 @@ import { IconsService } from "../../service/icons.service";
 export class DashboardPage {
   constructor(private iconsService: IconsService) {
     this.iconsService.registerSvgIconInNamespace('dashboard', 'home');
+    this.iconsService.registerSvgIconInNamespace('dashboard', 'delete');
   }
 }

@@ -8,10 +8,7 @@
     container-text-color: white,
     container-shape: 0,
     container-elevation-shadow: 200px,
-    container-width: 200px,
+    container-width: 300px,
     container-background-color: map.get(theme.$primary-palette, 25)
   ));
-}
-.app-sidenav{
-  // background: linear-gradient(to bottom, var(--sidenav-background-color), indigo);
 }

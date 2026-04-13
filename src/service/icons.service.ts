@@ -9,13 +9,11 @@ export class IconsService {
     private sanitizer: DomSanitizer,
   ) {}
   registerSvgIconInNamespace(namespace: string, name: string) {
-    const registry = this.iconRegistry.addSvgIconInNamespace(
+    return this.iconRegistry.addSvgIconInNamespace(
       namespace,
       name,
       this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/icons/${name}.svg`),
     );
-    console.log(registry)
-
   }
   registerSvgIcon(name: string) {
     return this.iconRegistry.addSvgIcon(
