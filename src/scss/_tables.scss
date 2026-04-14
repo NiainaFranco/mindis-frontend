@@ -1,7 +1,13 @@
 @use '@angular/material' as mat;
+@use './theme/theme-colors' as theme;
+@use 'sass:map';
 
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
 :root {
   @include mat.table-overrides((
+    header-container-height: 45px,
+    row-item-outline-color: map.get(theme.$primary_palette, 'neutral', 70),
+    header-headline-weight: 600,
+    header-headline-color: map.get(theme.$primary_palette, 'neutral', 30)
   ));
 }

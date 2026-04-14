@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { JsonPipe } from '@angular/common';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { MatAnchor, MatFabButton, MatMiniFabButton } from "@angular/material/button";
+import { MatAnchor, MatButton, MatFabButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { IconsService } from '../../../../service/icons.service';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
@@ -15,10 +15,11 @@ import { PaginationMetaWrapper } from '../../../../types/pagination-meta-wrapper
 import { GetRibonColor } from '../../../../types/get-ribon-color.type';
 import { MatFormField } from "@angular/material/select";
 import { AppTableSearchInput } from "../../../../components/app-table-search-input/app-table-search-input";
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-ribon-color-landing-page',
-  imports: [Breadcrumb, MatPaginatorModule, MatSort, MatTableModule, MatMiniFabButton, MatIcon, MatSortHeader, MatFormField, AppTableSearchInput],
+  imports: [Breadcrumb,RouterModule, MatPaginatorModule, MatSort, MatTableModule, MatMiniFabButton, MatIcon, MatSortHeader, MatFormField, MatButton, AppTableSearchInput, MatAnchor, RouterLink],
   templateUrl: './ribon-color-landing-page.html',
   styleUrl: './ribon-color-landing-page.css',
 })
@@ -29,18 +30,9 @@ export class RibonColorLandingPage {
     this.perPage.set(event.pageSize);
   }
 
-  handleSearch(){
-
-  }
-
   handleFilterByName(event: Event){
-    const value = (event.target as HTMLInputElement).value;
-    const values = this.ribonColorsRessource$.value() as PaginationMetaWrapper<GetRibonColor>;
-    const toFilter = values.data
-    if(values){
-      const filtered = [...toFilter.filter((i)=>(i.name.includes(value)))]
-      this.ribonColorsData$.set([...filtered]);
-    }
+    const value = (event.target as HTMLInputElement).value
+    this.nameToSearch.set(value)
   }
 
   handleFilterSort(event: Sort){
@@ -58,7 +50,7 @@ export class RibonColorLandingPage {
 
   breadCrumbRoutes: BreadCrumbLinkType[] = [
     {
-      href: '/dashboard/ribon-color',
+      routerLink: "/dashboard/ribon-color",
       order: 1,
       routeName: 'Ribon colors',
     },

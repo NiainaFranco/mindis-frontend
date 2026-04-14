@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{label}}</mat-label>
+  <input matInput (blur)="blur.bind(this)" [placeholder]="placeholder" [formControl]="inputControl"/>
+  <mat-error >{{errorMessage}}</mat-error>
+
+</mat-form-field>

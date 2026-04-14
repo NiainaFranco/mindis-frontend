@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { MatAnchor, MatButton } from "@angular/material/button";
 import { IconsService } from '../../service/icons.service';
 import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [MatAnchor, MatButton, MatIcon],
+  imports: [MatAnchor, MatButton, MatIcon, RouterLink],
   templateUrl: './breadcrumb.html',
   styleUrl: './_breadcrumb.scss',
 })
@@ -15,7 +16,6 @@ export class Breadcrumb {
     "breadcrumb",
     "chevron-right"
    )
-
  }
 
   @Input()
@@ -24,6 +24,6 @@ export class Breadcrumb {
 
 export type BreadCrumbLinkType = {
   order: number
-  href?: string
+  routerLink?: string
   routeName: string
 }
