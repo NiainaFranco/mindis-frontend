@@ -29,5 +29,6 @@ export class DashboardPage {
     this.iconsService.registerSvgIconInNamespace('dashboard', 'home');
     this.iconsService.registerSvgIconInNamespace('dashboard', 'delete');
     this.iconsService.registerSvgIconInNamespace('dashboard', 'add');
+    this.iconsService.registerSvgIconInNamespace('dashboard', 'edit');
   }
 }

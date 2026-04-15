@@ -3,6 +3,7 @@
 @use 'sass:map';
 
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
+$_elevation-shadow:8;
 :root {
   @include mat.button-overrides((
 

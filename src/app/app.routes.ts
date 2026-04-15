@@ -17,7 +17,6 @@ import { ProductLandingPage } from '../pages/dashboard-page/product/product-land
 import { CreateProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/create-product-ribon-color-presentation-page/create-product-ribon-color-presentation-page';
 import { EditProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/edit-product-ribon-color-presentation-page/edit-product-ribon-color-presentation-page';
 import { DashboardLandingPage } from '../pages/dashboard-page/dashboard-landing-page/dashboard-landing-page';
-import { RibonColorCreatePage } from '../pages/dashboard-page/ribon-color/ribon-color-create-page/ribon-color-create-page';
 
 export const routes: Routes = [
   {
@@ -41,10 +40,6 @@ export const routes: Routes = [
         {
           path: "",
           component: RibonColorLandingPage
-        },
-        {
-          path: "create",
-          component: RibonColorCreatePage
         }
       ]},
       {

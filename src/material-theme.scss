@@ -10,10 +10,12 @@
 @use './scss/theme/theme-colors' as palette;
 @use './scss/list-item';
 @use './scss/tables';
+@use 'sass:map';
 
 :root{
   --primary-color: #6D15F9;
   --secondary-color: #F9DE15;
+  @include mat.elevation(0.5, map.get(palette.$primary-palette, 'neutral', 10), 0.1)
 }
 html {
   height: 100%;
