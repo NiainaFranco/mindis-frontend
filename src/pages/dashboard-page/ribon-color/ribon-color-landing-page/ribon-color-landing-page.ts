@@ -17,7 +17,8 @@ import { MatFormField } from "@angular/material/select";
 import { AppTableSearchInput } from "../../../../components/app-table-search-input/app-table-search-input";
 import { RouterLink, RouterModule } from "@angular/router";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RibonColorCreateDialog } from '../ribon-color-create-page/ribon-color-create-dialog';
+import { RibonColorCreateDialog } from '../ribon-color-create-dialog/ribon-color-create-dialog';
+import { RibonColorEditDialog } from '../ribon-color-edit-dialog/ribon-color-edit-dialog';
 
 @Component({
   selector: 'app-ribon-color-landing-page',
@@ -57,7 +58,18 @@ export class RibonColorLandingPage {
     this.nameToSearch.set(value);
   }
 
-  handleEditRow(id: string) {
+  handleEditRow(ribonColor: GetRibonColor) {
+    this.matDialog.open(RibonColorEditDialog, {
+      height:"300px",
+      width:"250px",
+      data: {
+        ribonColor: ribonColor
+      }
+    }).afterClosed().subscribe((edited)=>{
+      if(edited){
+        this.ribonColorsRessource$.reload()
+      }
+    })
 
   }
 
@@ -65,8 +77,10 @@ export class RibonColorLandingPage {
     this.matDialog.open(RibonColorCreateDialog, {
       height:"300px",
       width:"250px"
-    }).afterClosed().subscribe(result=>{
-      this.ribonColorsRessource$.reload()
+    }).afterClosed().subscribe((created)=>{
+      if(created){
+        this.ribonColorsRessource$.reload()
+      }
     });
   }
 

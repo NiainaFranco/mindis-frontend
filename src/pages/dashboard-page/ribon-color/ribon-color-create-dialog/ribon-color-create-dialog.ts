@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Breadcrumb, BreadCrumbLinkType } from '../../../../components/breadcrumb/breadcrumb';
-import { MatAnchor } from '@angular/material/button';
+import { MatAnchor, MatButtonModule } from '@angular/material/button';
 import { FormInput } from '../../../../components/form-input/form-input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/select';
@@ -10,7 +10,7 @@ import { MatDialogRef, MatDialogContent, MatDialogActions, MatDialogContainer, M
 
 @Component({
   selector: 'app-ribon-color-create-dialog',
-  imports: [MatDialogModule, MatAnchor, FormInput, MatFormFieldModule, ReactiveFormsModule, MatDialogContent, MatDialogActions, MatDialogContainer],
+  imports: [MatDialogModule, MatButtonModule, MatAnchor, FormInput, MatFormFieldModule, ReactiveFormsModule, MatDialogContent, MatDialogActions, MatDialogContainer],
   templateUrl: './ribon-color-create-dialog.html',
 })
 export class RibonColorCreateDialog{
@@ -30,7 +30,7 @@ export class RibonColorCreateDialog{
         color: this.color.value,
         name: this.name.value,
       }).subscribe(()=>{
-        this.dialogRef.close()
+        this.dialogRef.close(true)
       });
     }
   };
