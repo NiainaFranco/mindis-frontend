@@ -1,9 +1,87 @@
-import { Component } from '@angular/core';
+import { Component, resource, signal, effect } from '@angular/core';
+import { BreadCrumbLinkType, Breadcrumb } from '../../../../components/breadcrumb/breadcrumb';
+import { AppTableSearchInput } from '../../../../components/app-table-search-input/app-table-search-input';
+import { RouterLink } from '@angular/router';
+import { GetRibonColor } from '../../../../types/get-ribon-color.type';
+import { RibonColorService } from '../../../../service/ribon-color.service';
+import { firstValueFrom } from 'rxjs';
+import { CreateRibonColorSetService } from './create-ribon-color-set-service';
+import { KeyValuePipe } from '@angular/common';
+import { RibonColorSetService } from '../../../../service/ribon-color-set.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatAnchor, MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-create-ribon-color-set-page',
-  imports: [],
+  imports: [
+    Breadcrumb,
+    AppTableSearchInput,
+    RouterLink,
+    KeyValuePipe,
+    MatButton,
+    ReactiveFormsModule,
+    MatAnchor,
+  ],
   templateUrl: './create-ribon-color-set-page.html',
   styleUrl: './create-ribon-color-set-page.css',
 })
-export class CreateRibonColorSetPage {}
+export class CreateRibonColorSetPage {
+  constructor(
+    private ribonColorSetService: RibonColorSetService,
+    private ribonColorService: RibonColorService,
+    private createRibonColorSetService: CreateRibonColorSetService,
+  ) {}
+  nameForm = new FormControl('');
+  breadCrumbRoutes: BreadCrumbLinkType[] = [
+    {
+      routerLink: '/dashboard/ribon-color-set',
+      order: 1,
+      routeName: 'Ribon colors sets',
+    },
+    {
+      routerLink: '/dashboard/ribon-color-set/create',
+      order: 2,
+      routeName: 'Create',
+    },
+  ];
+  createRibonColorSet(e: Event) {
+    e.preventDefault();
+    if (this.nameForm.value)
+      this.ribonColorSetService
+        .createRibonColorSet({
+          ribonColorSet: {
+            name: this.nameForm.value,
+            ribonColors: this.ribonColorsToAddArray$(),
+          },
+        })
+        .subscribe((created) => {
+          console.log(created);
+        });
+  }
+  ribonColorsToAddArray$ = signal<GetRibonColor[]>([]);
+  ribonColorsMap$ = signal<Map<string, GetRibonColor>>(new Map());
+  addOrRemoveRibonColor = (ribonColor: GetRibonColor) => {
+    this.createRibonColorSetService
+      .addOrRemoveRibonColorFromSignal(this.ribonColorsMap$, ribonColor)
+      .then(() => {
+        this.ribonColorsToAddArray$.set(
+          Array.from(this.ribonColorsMap$().entries()).map((_) => _[1]),
+        );
+      });
+  };
+  page = signal(1);
+  nameToSearch = signal('');
+  ribonColorsData$ = signal<GetRibonColor[]>([]);
+  ribonColorsRessource$ = resource({
+    params: () => ({ page: this.page(), name: this.nameToSearch() }),
+    loader: async ({ params }) => {
+      const obs = this.ribonColorService.getAllWithPagination({
+        page: params.page,
+        name: params.name,
+      });
+      const value = await firstValueFrom(obs);
+      this.ribonColorsData$.set([...value.data]);
+      return value;
+    },
+  });
+}

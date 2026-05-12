@@ -1,1 +1,28 @@
-<p>create-ribon-color-set-page works!</p>
+<div>
+  <app-breadcrumb [links]="breadCrumbRoutes"></app-breadcrumb>
+  <form action="" (submit)="createRibonColorSet($event)">
+    <input type="text" [formControl]="nameForm" >
+    <div>
+      @if(ribonColorsData$()){
+        @for(ribonColor of ribonColorsData$() ; track $index){
+          <div>
+            <label for="">{{ribonColor.name}}</label>
+            <div class="p-3" [style.background-color]="ribonColor.color"></div>
+            <input (change)="addOrRemoveRibonColor(ribonColor)" type="checkbox" name="" [value]="ribonColor.id">
+          </div>
+        }
+      }
+    </div>
+    <div>
+      @if(ribonColorsToAddArray$()){
+        @for(ribonColor of ribonColorsToAddArray$() ; track $index){
+          <div>
+            <label for="">{{ribonColor.name}}</label>
+            <div class="p-3" [style.background-color]="ribonColor.color"></div>
+          </div>
+        }
+      }
+    </div>
+    <button matButton="filled" type="submit" >create</button>
+  </form>
+</div>

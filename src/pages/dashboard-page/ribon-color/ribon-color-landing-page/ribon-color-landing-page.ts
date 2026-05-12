@@ -115,11 +115,11 @@ export class RibonColorLandingPage {
       routeName: 'Ribon colors',
     },
   ];
-  page = signal(1);
   perPage = signal(50);
+  page = signal(1);
   nameToSearch = signal('');
-  ribonColorsData$ = signal<GetRibonColor[]>([]);
   ribonColorsHeaders$ = ['name', 'color', 'actions'];
+  ribonColorsData$ = signal<GetRibonColor[]>([]);
   ribonColorsRessource$ = resource({
     params: () => ({ page: this.page(), name: this.nameToSearch(), perPage: this.perPage() }),
     loader: async ({ params }) => {

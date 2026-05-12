@@ -12,8 +12,7 @@
         </div>
       </div>
       <div class="w-full py-2 flex justify-end">
-        <button (click)="handleOpenCreationDialogue()" matFab extended>
-          <mat-icon svgIcon="dashboard:add"></mat-icon>
+        <button (click)="handleOpenCreationDialogue()" matButton="filled">
           New color
         </button>
       </div>
@@ -38,7 +37,7 @@
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let ribonColor">
               <div class="flex gap-2">
-                <button matMiniFab="filled" (click)="handleDeleteRow(ribonColor.id)" class="warn-fab-btn">
+                <button matMiniFab="filled" (click)="handleDeleteRow(ribonColor.id)" class="btn-fab-warn">
                   <mat-icon svgIcon="dashboard:delete"></mat-icon>
                 </button>
                 <button matMiniFab="filled" (click)="handleEditRow(ribonColor)">
