@@ -24,5 +24,8 @@
         }
       </div>
     </div>
+      <mat-paginator (page)="handlePageEvent($event)" [length]="ribonColorSetRessource$.value()?.meta?.totalCount"
+        [pageSizeOptions]="[10,30,50,100]" [disabled]="ribonColorSetRessource$.status() != 'resolved'"
+        aria-label="Select page of ribon colors."></mat-paginator>
   </div>
 </div>

@@ -19,7 +19,7 @@ export class RibonColorSetService {
   createRibonColorSet(arg: {
     ribonColorSet: CreateRibonColorSetType
   }){
-    return this.httpClient.post("/ribon-color-set/create", arg.ribonColorSet);
+    return this.httpClient.post<GetRibonColorSetType>("/ribon-color-set/create", arg.ribonColorSet);
   }
 
   deleteRibonColorSet(arg: {

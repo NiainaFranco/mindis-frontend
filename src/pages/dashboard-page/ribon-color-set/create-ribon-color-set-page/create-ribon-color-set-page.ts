@@ -1,7 +1,7 @@
 import { Component, resource, signal, effect } from '@angular/core';
 import { BreadCrumbLinkType, Breadcrumb } from '../../../../components/breadcrumb/breadcrumb';
 import { AppTableSearchInput } from '../../../../components/app-table-search-input/app-table-search-input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { GetRibonColor } from '../../../../types/get-ribon-color.type';
 import { RibonColorService } from '../../../../service/ribon-color.service';
 import { firstValueFrom } from 'rxjs';
@@ -10,6 +10,7 @@ import { KeyValuePipe } from '@angular/common';
 import { RibonColorSetService } from '../../../../service/ribon-color-set.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatAnchor, MatButton } from '@angular/material/button';
+import { RouteInfoType, Status } from '../../../../types/route-info.type';
 
 @Component({
   selector: 'app-create-ribon-color-set-page',
@@ -30,6 +31,7 @@ export class CreateRibonColorSetPage {
     private ribonColorSetService: RibonColorSetService,
     private ribonColorService: RibonColorService,
     private createRibonColorSetService: CreateRibonColorSetService,
+    private router: Router
   ) {}
   nameForm = new FormControl('');
   breadCrumbRoutes: BreadCrumbLinkType[] = [
@@ -54,8 +56,23 @@ export class CreateRibonColorSetPage {
             ribonColors: this.ribonColorsToAddArray$(),
           },
         })
-        .subscribe((created) => {
-          console.log(created);
+        .subscribe({
+          next: (created) => {
+            this.router.navigate(['dashboard', 'ribon-color-set'], {
+              info: {
+                message: created.name + ' created successfully',
+                status: Status.SUCCESS,
+              } as RouteInfoType,
+            });
+          },
+          error: () => {
+            this.router.navigate(['dashboard', 'ribon-color-set'], {
+              info: {
+                message: 'An error occured',
+                status: Status.ERROR,
+              } as RouteInfoType,
+            });
+          },
         });
   }
   ribonColorsToAddArray$ = signal<GetRibonColor[]>([]);
