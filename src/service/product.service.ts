@@ -25,7 +25,7 @@ export class ProductService {
     formData.append('price', price.toString());
     return this.httpClient.patch<GetProductType>('/product/update', formData);
   }
-  getAllPaginated(query: { page: number; name: string }) {
+  getAllPaginated(query: { page: number; name: string, perPage: number }) {
     return this.httpClient.get<PaginationMetaWrapper<GetProductType>>('/product/get-all', {
       params: query,
     });

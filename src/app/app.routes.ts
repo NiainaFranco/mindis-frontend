@@ -51,7 +51,7 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'order',
+        path: 'orders',
         children: [
           { path: 'create', component: CreateOrderPage },
           { path: 'edit/:id', component: EditOrderPage },
@@ -59,7 +59,7 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'product',
+        path: 'products',
         children: [
           { path: 'create', component: CreateProductPage },
           {
