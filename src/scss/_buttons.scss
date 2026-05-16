@@ -3,24 +3,26 @@
 @use 'sass:map';
 
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
-$_elevation-shadow:8;
+$_elevation-shadow: 8;
 :root {
-  @include mat.button-overrides((
-
-  ));
+  @include mat.button-overrides(());
 }
 
 .warn-btn {
-  @include mat.button-overrides((
-    filled-container-color:map.get(theme.$primary-palette, error, 50),
-  ));
+  @include mat.button-overrides(
+    (
+      filled-container-color: map.get(theme.$primary-palette, error, 50),
+    )
+  );
 }
 
-.btn-fab-warn{
-  @include mat.fab-overrides((
-   small-container-color:map.get(theme.$primary-palette, error, 50),
-   container-color:map.get(theme.$primary-palette, error, 50),
-   small-ripple-color:map.get(theme.$primary-palette, error, 40),
-   small-foreground-color: map.get(theme.$primary-palette, error, 40)
-  ))
+.btn-fab-warn {
+  @include mat.fab-overrides(
+    (
+      small-container-color: map.get(theme.$primary-palette, error, 50),
+      container-color: map.get(theme.$primary-palette, error, 50),
+      small-ripple-color: map.get(theme.$primary-palette, error, 40),
+      small-foreground-color: map.get(theme.$primary-palette, error, 40),
+    )
+  );
 }

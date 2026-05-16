@@ -1,10 +1,7 @@
 <span class="flex justify-between">
   <div class="flex gap-2 items-center">
-    <div [class]="color + ' rounded-full h-[20px] w-[20px]'">
-    </div>
-    <p>
-      {{data.message}}
-    </p>
+    <div [class]="color + ' rounded-full h-[20px] w-[20px]'"></div>
+    <p>{{data.message}}</p>
   </div>
   <button matButton="text" (click)="close()">Ok</button>
 </span>

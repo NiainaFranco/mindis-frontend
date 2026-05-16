@@ -1,9 +1,16 @@
-import { CanActivate, CanActivateChild, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
-import { AuthService } from "../service/auth-service.service";
-import { catchError, map, of, take } from "rxjs";
-import { inject,  Injectable, PLATFORM_ID, REQUEST } from "@angular/core";
-import { isPlatformBrowser } from "@angular/common";
-import { Request } from "express";
+import {
+  CanActivate,
+  CanActivateChild,
+  GuardResult,
+  MaybeAsync,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { AuthService } from '../service/auth-service.service';
+import { catchError, map, of, take } from 'rxjs';
+import { inject, Injectable, PLATFORM_ID, REQUEST } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Request } from 'express';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorizationGuard implements CanActivate {
@@ -26,7 +33,7 @@ export class AuthorizationGuard implements CanActivate {
           }
         }),
         catchError((e) => {
-          console.log(e)
+          console.log(e);
           // this.router.navigate(['/forbidden'])
           return of(true);
         }),

@@ -12,7 +12,7 @@ import { CreateRibonColorSetService } from '../create-ribon-color-set-page/creat
 
 @Component({
   selector: 'app-edit-ribon-color-set-page',
-  imports: [Breadcrumb, ReactiveFormsModule ],
+  imports: [Breadcrumb, ReactiveFormsModule],
   templateUrl: './edit-ribon-color-set-page.html',
   styleUrl: './edit-ribon-color-set-page.css',
 })
@@ -29,12 +29,12 @@ export class EditRibonColorSetPage {
       routeName: 'Edit',
     },
   ];
-  nameForm! : FormControl<string | null>
+  nameForm!: FormControl<string | null>;
   page = signal(1);
   nameToSearch = signal('');
-  ribonColorsToAddArray$! : WritableSignal<GetRibonColor[]>
+  ribonColorsToAddArray$!: WritableSignal<GetRibonColor[]>;
   ribonColorSetToEdit?: GetRibonColorSetType;
-  ribonColorsData$ = signal<GetRibonColor[]>([])
+  ribonColorsData$ = signal<GetRibonColor[]>([]);
   ribonColorRessource$ = resource({
     params: () => ({ page: this.page(), name: this.nameToSearch() }),
     loader: async ({ params }) => {
@@ -46,39 +46,48 @@ export class EditRibonColorSetPage {
       this.ribonColorsData$.set([...value.data]);
       return value;
     },
-  })
-  updateRibonColorSet = (event: Event)=>{
-    event.preventDefault()
-    if(this.ribonColorSetToEdit){
-      this.ribonColorSetService.updateRibonColorSet({
-        ribonColorSet: {
-          id: this.ribonColorSetToEdit?.id,
-          name: this.nameForm.value,
-          ribonColors: this.ribonColorsToAddArray$()
-        }
-      }).subscribe(()=>{
-        this.router.navigate(['dashboard','ribon-color-set'], {
-          info: {
-            message: 'Updated successfully',
-            status: Status.SUCCESS,
-          } as RouteInfoType,
+  });
+  updateRibonColorSet = (event: Event) => {
+    event.preventDefault();
+    if (this.ribonColorSetToEdit) {
+      this.ribonColorSetService
+        .updateRibonColorSet({
+          ribonColorSet: {
+            id: this.ribonColorSetToEdit?.id,
+            name: this.nameForm.value,
+            ribonColors: this.ribonColorsToAddArray$(),
+          },
+        })
+        .subscribe(() => {
+          this.router.navigate(['dashboard', 'ribon-color-set'], {
+            info: {
+              message: 'Updated successfully',
+              status: Status.SUCCESS,
+            } as RouteInfoType,
+          });
         });
-      })
     }
-  }
-  ribonColorsMap$! : WritableSignal<Map<string, GetRibonColor>>
-  addOrRemoveRibonColor = (arg: GetRibonColor)=>{
-    this.createRibonColorSetService.addOrRemoveRibonColorFromSignal(this.ribonColorsMap$, arg).then(()=>{
+  };
+  ribonColorsMap$!: WritableSignal<Map<string, GetRibonColor>>;
+  addOrRemoveRibonColor = (arg: GetRibonColor) => {
+    this.createRibonColorSetService
+      .addOrRemoveRibonColorFromSignal(this.ribonColorsMap$, arg)
+      .then(() => {
         this.ribonColorsToAddArray$.set(
           Array.from(this.ribonColorsMap$().entries()).map((_) => _[1]),
         );
-    })
-  }
+      });
+  };
 
-  constructor(private router: Router, private ribonColorService: RibonColorService, private ribonColorSetService: RibonColorSetService, private createRibonColorSetService: CreateRibonColorSetService) {
+  constructor(
+    private router: Router,
+    private ribonColorService: RibonColorService,
+    private ribonColorSetService: RibonColorSetService,
+    private createRibonColorSetService: CreateRibonColorSetService,
+  ) {
     const state = this.router.currentNavigation()?.extras.state;
     if (!state) {
-      router.navigate(['dashboard','ribon-color-set'], {
+      router.navigate(['dashboard', 'ribon-color-set'], {
         info: {
           message: 'page refreshed',
           status: Status.INFO,
@@ -86,11 +95,15 @@ export class EditRibonColorSetPage {
       });
     } else {
       this.ribonColorSetToEdit = state['ribonColorSet'] as GetRibonColorSetType;
-      this.nameForm = new FormControl(this.ribonColorSetToEdit.name || "")
-      this.ribonColorsToAddArray$ = signal(this.ribonColorSetToEdit.ribonColors)
-      this.ribonColorsMap$ = signal(new Map(this.ribonColorSetToEdit.ribonColors.map((ribonColor)=>{
-        return [ribonColor.id, ribonColor]
-      })))
+      this.nameForm = new FormControl(this.ribonColorSetToEdit.name || '');
+      this.ribonColorsToAddArray$ = signal(this.ribonColorSetToEdit.ribonColors);
+      this.ribonColorsMap$ = signal(
+        new Map(
+          this.ribonColorSetToEdit.ribonColors.map((ribonColor) => {
+            return [ribonColor.id, ribonColor];
+          }),
+        ),
+      );
     }
   }
 }

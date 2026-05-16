@@ -1,11 +1,10 @@
-import { GetProductRibonColorPresentationType } from "./get-product-ribon-color-presentation.type"
+import { GetProductRibonColorPresentationType } from './get-product-ribon-color-presentation.type';
 
 export type GetProductType = {
-  id: string
-  name: string
-  description: string
-  thumbnail?: string
-  price: number
-  productRibonColorPresentations?: GetProductRibonColorPresentationType[]
-}
-
+  id: string;
+  name: string;
+  description: string;
+  thumbnail?: string;
+  price: number;
+  productRibonColorPresentations?: GetProductRibonColorPresentationType[];
+};

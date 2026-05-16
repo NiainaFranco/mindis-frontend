@@ -5,19 +5,19 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-form-input',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule ],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './form-input.html',
   styleUrl: './form-input.css',
 })
 export class FormInput {
   @Input()
-  label = ""
+  label = '';
   @Input()
-  errorMessage = ""
+  errorMessage = '';
   @Input()
-  inputControl = new FormControl('')
+  inputControl = new FormControl('');
   @Input()
-  blur: ()=>void = ()=>{}
+  blur: () => void = () => {};
   @Input()
-  placeholder = ""
+  placeholder = '';
 }

@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:mindis-frontend": "node dist/mindis-frontend/server/server.mjs"
+    "serve:ssr:mindis-frontend": "node dist/mindis-frontend/server/server.mjs",
+    "prettier": "prettier --write ./src"
   },
   "private": true,
   "packageManager": "npm@11.8.0",

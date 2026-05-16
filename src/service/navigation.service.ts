@@ -7,18 +7,12 @@ import { RouteInfoType } from '../types/route-info.type';
   providedIn: 'root',
 })
 export class NavigationService {
-  constructor() {
-  }
+  constructor() {}
 
-  navigate(args: {
-    router: Router,
-    route: string[]
-    routeInfo: RouteInfoType
-  }): void {
-    const {route, routeInfo, router} = args
+  navigate(args: { router: Router; route: string[]; routeInfo: RouteInfoType }): void {
+    const { route, routeInfo, router } = args;
     router.navigate(route, {
-      info: routeInfo
-    })
-
+      info: routeInfo,
+    });
   }
 }

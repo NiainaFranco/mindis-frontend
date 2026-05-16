@@ -12,19 +12,22 @@ import { NavigationService } from '../../../../service/navigation.service';
 })
 export class EditProductPage {
   productToEdit!: WritableSignal<GetProductType>;
-  constructor(private router: Router, private navigationService: NavigationService){
+  constructor(
+    private router: Router,
+    private navigationService: NavigationService,
+  ) {
     const state = this.router.currentNavigation()?.extras.state;
     if (!state) {
       this.navigationService.navigate({
         router: router,
         route: ['dashboard', 'products'],
         routeInfo: {
-          message: "No product selected",
-          status: Status.INFO
-        }
-      })
-    }else {
-      const product = state['product'] as GetProductType
+          message: 'No product selected',
+          status: Status.INFO,
+        },
+      });
+    } else {
+      const product = state['product'] as GetProductType;
       this.productToEdit = signal(product);
     }
   }

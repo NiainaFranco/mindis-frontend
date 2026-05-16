@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
 })
 export class SnackbarService {
   private _snackBar = inject(MatSnackBar);
-  private duration = 20
-  openSnackBar = (message: string, status: Status = Status.INFO)=>{
+  private duration = 20;
+  openSnackBar = (message: string, status: Status = Status.INFO) => {
     this._snackBar.openFromComponent(Snackbar, {
       duration: this.duration * 1000,
-      data: {message: message, status: status} as RouteInfoType
-    })
-  }
+      data: { message: message, status: status } as RouteInfoType,
+    });
+  };
 
-  onEnterRouteWithRouteInfo(router: Router){
+  onEnterRouteWithRouteInfo(router: Router) {
     const info = router.currentNavigation()?.extras.info as RouteInfoType;
-    if ( info ){
+    if (info) {
       this.openSnackBar(info.message, info.status);
     }
   }

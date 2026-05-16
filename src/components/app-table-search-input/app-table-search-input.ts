@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormField, MatHint } from "@angular/material/select";
+import { MatFormField, MatHint } from '@angular/material/select';
 
 @Component({
   selector: 'app-table-search-input',
@@ -11,13 +11,13 @@ import { MatFormField, MatHint } from "@angular/material/select";
 })
 export class AppTableSearchInput {
   @Input()
-  label: string = ""
+  label: string = '';
 
   @Input()
-  placeHolder: string = ""
+  placeHolder: string = '';
 
   @Input()
-  change: (event: Event)=>void = ()=>{
-    console.log("no event configured for this input")
-  }
+  change: (event: Event) => void = () => {
+    console.log('no event configured for this input');
+  };
 }

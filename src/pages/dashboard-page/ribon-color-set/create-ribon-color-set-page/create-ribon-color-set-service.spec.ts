@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CreateRibonColorSetService } from './create-ribon-color-set-service';
 
-
 describe('CreateRibonColorSetService', () => {
   let service: CreateRibonColorSetService;
 

@@ -9,7 +9,7 @@ export class ProductService {
   create(args: { thumbnail?: File | null; description: string; name: string; price: number }) {
     const { thumbnail, description, name, price } = args;
     const formData = new FormData();
-    if(thumbnail){
+    if (thumbnail) {
       formData.append('thumbnail', thumbnail, thumbnail.name);
     }
     formData.append('description', description);
@@ -27,7 +27,7 @@ export class ProductService {
     formData.append('price', price.toString());
     return this.httpClient.patch<GetProductType>('/product/update', formData);
   }
-  getAllPaginated(query: { page: number; name: string, perPage: number }) {
+  getAllPaginated(query: { page: number; name: string; perPage: number }) {
     return this.httpClient.get<PaginationMetaWrapper<GetProductType>>('/product/get-all', {
       params: query,
     });

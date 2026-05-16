@@ -2,10 +2,10 @@
   <div><app-breadcrumb [links]="breadCrumbLinks"></app-breadcrumb></div>
   <div>
     <form [formGroup]="productFormGroup" (submit)="createProduct($event)" action="">
-      <input type="file" (change)="selectImage($event)">
+      <input type="file" (change)="selectImage($event)" />
       <textarea formControlName="description" type="text"></textarea>
-      <input formControlName="name" type="text">
-      <input formControlName="price" type="number">
+      <input formControlName="name" type="text" />
+      <input formControlName="price" type="number" />
       <button matButton="filled">Create</button>
     </form>
   </div>

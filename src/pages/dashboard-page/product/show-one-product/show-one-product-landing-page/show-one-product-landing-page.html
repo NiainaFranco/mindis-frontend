@@ -1,9 +1,11 @@
 <main>
   <div>
-   <app-breadcrumb [links]="breadCrumbLinks"></app-breadcrumb>
+    <app-breadcrumb [links]="breadCrumbLinks"></app-breadcrumb>
   </div>
   <div>
     {{productResource$.value()?.name}}
-    <button (click)="createProductRibonColorPresentation()" matButton="filled">Add product color</button>
+    <button (click)="createProductRibonColorPresentation()" matButton="filled">
+      Add product color
+    </button>
   </div>
 </main>

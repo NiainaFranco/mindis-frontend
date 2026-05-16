@@ -1,14 +1,13 @@
-import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
-
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   templateUrl: './landing-page.component.html',
-  imports: [RouterLink]
+  imports: [RouterLink],
 })
-export class LandingPage{
+export class LandingPage {
   toIncrement = 1;
-  increment(){
-    this.toIncrement++
+  increment() {
+    this.toIncrement++;
   }
 }

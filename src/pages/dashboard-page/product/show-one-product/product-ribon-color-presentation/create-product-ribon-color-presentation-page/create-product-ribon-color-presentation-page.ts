@@ -14,33 +14,39 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './create-product-ribon-color-presentation-page.css',
 })
 export class CreateProductRibonColorPresentationPage {
-  product!: GetProductType
-  image?: File | null
-  ribonColorSetId = signal("")
-  createProductRibonColorPresentation(){
-    if(this.product.id && this.ribonColorSetId().length > 0)
-    this.productRibonColorPresentationService.create({
-      productId: this.product.id,
-      image: this.image,
-      ribonColorSetId: this.ribonColorSetId()
-    })
+  product!: GetProductType;
+  image?: File | null;
+  ribonColorSetId = signal('');
+  createProductRibonColorPresentation() {
+    if (this.product.id && this.ribonColorSetId().length > 0)
+      this.productRibonColorPresentationService.create({
+        productId: this.product.id,
+        image: this.image,
+        ribonColorSetId: this.ribonColorSetId(),
+      });
   }
-  constructor(private ribonColorSetService: RibonColorSetService, private productRibonColorPresentationService: ProductRibonColorPresentationService,private activatedRoute: ActivatedRoute,private router: Router, private navigationService: NavigationService){
-    const state = router.currentNavigation()?.extras.state
+  constructor(
+    private ribonColorSetService: RibonColorSetService,
+    private productRibonColorPresentationService: ProductRibonColorPresentationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private navigationService: NavigationService,
+  ) {
+    const state = router.currentNavigation()?.extras.state;
     const id = activatedRoute.snapshot.paramMap.get('id');
-    if(!state){
-      const routeToGo = id ? ['dashboard', 'products', 'show-one', id] : ['dashboard', 'products']
+    if (!state) {
+      const routeToGo = id ? ['dashboard', 'products', 'show-one', id] : ['dashboard', 'products'];
       this.navigationService.navigate({
-        route:routeToGo,
+        route: routeToGo,
         routeInfo: {
-          message: "No product selected",
-          status: Status.INFO
+          message: 'No product selected',
+          status: Status.INFO,
         },
-        router: router
-      })
-    }else{
-      const currentProduct = state['product'] as GetProductType
-      this.product = currentProduct
+        router: router,
+      });
+    } else {
+      const currentProduct = state['product'] as GetProductType;
+      this.product = currentProduct;
     }
   }
   page = signal(1);

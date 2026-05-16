@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { GetProductRibonColorPresentationType } from "../types/get-product-ribon-color-presentation.type";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { GetProductRibonColorPresentationType } from '../types/get-product-ribon-color-presentation.type';
 
 @Injectable({ providedIn: 'root' })
 export class ProductRibonColorPresentationService {
@@ -11,7 +11,7 @@ export class ProductRibonColorPresentationService {
     const formData = new FormData();
     formData.append('ribonColorSetId', ribonColorSetId);
     formData.append('productId', productId);
-    if(image){
+    if (image) {
       formData.append('image', image, image.name);
     }
     return this.httpClient.post<GetProductRibonColorPresentationType>(

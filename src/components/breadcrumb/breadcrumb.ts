@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { MatAnchor, MatButton } from "@angular/material/button";
+import { MatAnchor, MatButton } from '@angular/material/button';
 import { IconsService } from '../../service/icons.service';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,19 +11,16 @@ import { RouterLink } from "@angular/router";
   styleUrl: './_breadcrumb.scss',
 })
 export class Breadcrumb {
- constructor(private iconsService: IconsService){
-   this.iconsService.registerSvgIconInNamespace(
-    "breadcrumb",
-    "chevron-right"
-   )
- }
+  constructor(private iconsService: IconsService) {
+    this.iconsService.registerSvgIconInNamespace('breadcrumb', 'chevron-right');
+  }
 
   @Input()
-  links: BreadCrumbLinkType[] = []
+  links: BreadCrumbLinkType[] = [];
 }
 
 export type BreadCrumbLinkType = {
-  order: number
-  routerLink?: string
-  routeName: string
-}
+  order: number;
+  routerLink?: string;
+  routeName: string;
+};

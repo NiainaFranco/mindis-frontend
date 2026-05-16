@@ -1,10 +1,10 @@
-import { Component } from "@angular/core";
-import { MatButton, MatFabAnchor } from "@angular/material/button";
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
-import { MatListItem, MatNavList, MatListItemTitle, MatListItemIcon } from "@angular/material/list";
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
-import { RouterOutlet, RouterLinkWithHref, RouterLink } from "@angular/router";
-import { IconsService } from "../../service/icons.service";
+import { Component } from '@angular/core';
+import { MatButton, MatFabAnchor } from '@angular/material/button';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatListItem, MatNavList, MatListItemTitle, MatListItemIcon } from '@angular/material/list';
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
+import { IconsService } from '../../service/icons.service';
 
 @Component({
   templateUrl: './dashboard-page.component.html',

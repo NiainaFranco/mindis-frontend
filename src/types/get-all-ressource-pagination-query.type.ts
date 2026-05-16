@@ -1,5 +1,5 @@
 export type GetAllRessourcePaginationQueryType = {
-  page: number,
-  perPage?: number
-  name: string
-}
+  page: number;
+  perPage?: number;
+  name: string;
+};

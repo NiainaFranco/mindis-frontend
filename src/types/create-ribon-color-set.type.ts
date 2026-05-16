@@ -1,6 +1,6 @@
-import { GetRibonColor } from "./get-ribon-color.type"
+import { GetRibonColor } from './get-ribon-color.type';
 
 export type CreateRibonColorSetType = {
-  name: string,
-  ribonColors: GetRibonColor[]
-}
+  name: string;
+  ribonColors: GetRibonColor[];
+};

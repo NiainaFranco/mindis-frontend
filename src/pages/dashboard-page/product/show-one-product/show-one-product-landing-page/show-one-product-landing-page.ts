@@ -43,21 +43,21 @@ export class ShowOneProductLandingPage {
       ];
     }
   }
-  createProductRibonColorPresentation (){
+  createProductRibonColorPresentation() {
     this.router.navigate(['product-ribon-color-presentation', 'create'], {
       state: {
         product: this.productResource$.value(),
       },
-      relativeTo: this.activatedRoute
+      relativeTo: this.activatedRoute,
     });
   }
   productResource$ = resource({
     loader: async () => {
       const oneProductObs = this.productService.getOne({
-        id: this.productId
+        id: this.productId,
       });
-      const value = await firstValueFrom(oneProductObs)
-      return value
+      const value = await firstValueFrom(oneProductObs);
+      return value;
     },
   });
 }

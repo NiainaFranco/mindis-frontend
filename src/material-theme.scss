@@ -13,10 +13,10 @@
 @use './scss/utility';
 @use 'sass:map';
 
-:root{
-  --primary-color: #6D15F9;
-  --secondary-color: #F9DE15;
-  @include mat.elevation(0.5, map.get(palette.$primary-palette, 'neutral', 10), 0.1)
+:root {
+  --primary-color: #6d15f9;
+  --secondary-color: #f9de15;
+  @include mat.elevation(0.5, map.get(palette.$primary-palette, 'neutral', 10), 0.1);
 }
 html {
   height: 100%;

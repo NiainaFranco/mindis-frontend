@@ -1,4 +1,4 @@
 export type CreateProductOrderType = {
-  productNumber: number
-  productRibonColorPresentationId: string
-}
+  productNumber: number;
+  productRibonColorPresentationId: string;
+};

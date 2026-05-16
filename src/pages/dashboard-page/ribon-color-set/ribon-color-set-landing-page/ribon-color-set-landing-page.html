@@ -6,26 +6,29 @@
         <div>
           <h2 class="text-2xl p-2">Table Panel</h2>
           <div class="w-full flex-wrap flex">
-            <app-table-search-input label="Filter by Name" placeHolder="Ex: velvet, ice, oce..."
-              [change]="handleFilterByName.bind(this)"></app-table-search-input>
+            <app-table-search-input
+              label="Filter by Name"
+              placeHolder="Ex: velvet, ice, oce..."
+              [change]="handleFilterByName.bind(this)"
+            ></app-table-search-input>
           </div>
         </div>
       </div>
       <div class="w-full py-2 flex justify-end">
-        <a matButton="filled" routerLink="/dashboard/ribon-color-set/create">
-          New color set
-        </a>
+        <a matButton="filled" routerLink="/dashboard/ribon-color-set/create"> New color set </a>
       </div>
       <div>
-        @if(ribonColorSets()){
-          @for (ribonColorSet of ribonColorSets(); track $index) {
-            <app-ribon-color-set-card [ribonColorSet]="ribonColorSet"></app-ribon-color-set-card>
-          }
-        }
+        @if(ribonColorSets()){ @for (ribonColorSet of ribonColorSets(); track $index) {
+        <app-ribon-color-set-card [ribonColorSet]="ribonColorSet"></app-ribon-color-set-card>
+        } }
       </div>
     </div>
-      <mat-paginator (page)="handlePageEvent($event)" [length]="ribonColorSetRessource$.value()?.meta?.totalCount"
-        [pageSizeOptions]="[10,30,50,100]" [disabled]="ribonColorSetRessource$.status() != 'resolved'"
-        aria-label="Select page of ribon colors."></mat-paginator>
+    <mat-paginator
+      (page)="handlePageEvent($event)"
+      [length]="ribonColorSetRessource$.value()?.meta?.totalCount"
+      [pageSizeOptions]="[10,30,50,100]"
+      [disabled]="ribonColorSetRessource$.status() != 'resolved'"
+      aria-label="Select page of ribon colors."
+    ></mat-paginator>
   </div>
 </div>
