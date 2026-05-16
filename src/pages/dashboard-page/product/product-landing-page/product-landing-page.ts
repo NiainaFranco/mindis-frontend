@@ -3,7 +3,9 @@ import { ProductService } from '../../../../service/product.service';
 import { firstValueFrom } from 'rxjs';
 import { Breadcrumb, BreadCrumbLinkType } from "../../../../components/breadcrumb/breadcrumb";
 import { MatAnchor } from "@angular/material/button";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { GetProductType } from '../../../../types/get-product.type';
+import { SnackbarService } from '../../../../components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-product-landing-page',
@@ -12,8 +14,13 @@ import { RouterLink } from "@angular/router";
   styleUrl: './product-landing-page.css',
 })
 export class ProductLandingPage {
-  constructor(private productService: ProductService){
-
+  constructor(private productService: ProductService, private router:Router, private snackbarService: SnackbarService){
+    snackbarService.onEnterRouteWithRouteInfo(router);
+  }
+  editProduct (product: GetProductType){
+    this.router.navigate(['dashboard', 'products', 'edit'], {state: {
+      product: product
+    }})
   }
   breadCrumbLinks : BreadCrumbLinkType[] = [{
     order: 1,
@@ -32,6 +39,7 @@ export class ProductLandingPage {
         perPage: params.perPage
       })
       const products = await firstValueFrom(observer);
+
       return products;
     }
   })

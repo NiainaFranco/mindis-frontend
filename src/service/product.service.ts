@@ -6,10 +6,12 @@ import { PaginationMetaWrapper } from '../types/pagination-meta-wrapper.type';
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   constructor(private httpClient: HttpClient) {}
-  create(args: { thumbnail: File; description: string; name: string; price: number }) {
+  create(args: { thumbnail?: File | null; description: string; name: string; price: number }) {
     const { thumbnail, description, name, price } = args;
     const formData = new FormData();
-    formData.append('thumbnail', thumbnail, thumbnail.name);
+    if(thumbnail){
+      formData.append('thumbnail', thumbnail, thumbnail.name);
+    }
     formData.append('description', description);
     formData.append('name', name);
     formData.append('price', price.toString());

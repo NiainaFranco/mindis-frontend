@@ -6,12 +6,14 @@ import { GetProductRibonColorPresentationType } from "../types/get-product-ribon
 export class ProductRibonColorPresentationService {
   constructor(private httpClient: HttpClient) {}
 
-  create(args: { image: File; productId: string; ribonColorSetId: string }) {
+  create(args: { image?: File | null; productId: string; ribonColorSetId: string }) {
     const { image, productId, ribonColorSetId } = args;
     const formData = new FormData();
     formData.append('ribonColorSetId', ribonColorSetId);
     formData.append('productId', productId);
-    formData.append('image', image, image.name);
+    if(image){
+      formData.append('image', image, image.name);
+    }
     return this.httpClient.post<GetProductRibonColorPresentationType>(
       '/product-ribon-color-presentation/create',
       formData,

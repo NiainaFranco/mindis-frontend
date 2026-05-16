@@ -14,9 +14,10 @@ import { RibonColorSetLandingPage } from '../pages/dashboard-page/ribon-color-se
 import { CreateProductPage } from '../pages/dashboard-page/product/create-product-page/create-product-page';
 import { EditProductPage } from '../pages/dashboard-page/product/edit-product-page/edit-product-page';
 import { ProductLandingPage } from '../pages/dashboard-page/product/product-landing-page/product-landing-page';
-import { CreateProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/create-product-ribon-color-presentation-page/create-product-ribon-color-presentation-page';
-import { EditProductRibonColorPresentationPage } from '../pages/dashboard-page/product-ribon-color-presentation/edit-product-ribon-color-presentation-page/edit-product-ribon-color-presentation-page';
+import { CreateProductRibonColorPresentationPage } from '../pages/dashboard-page/product/show-one-product/product-ribon-color-presentation/create-product-ribon-color-presentation-page/create-product-ribon-color-presentation-page';
+import { EditProductRibonColorPresentationPage } from '../pages/dashboard-page/product/show-one-product/product-ribon-color-presentation/edit-product-ribon-color-presentation-page/edit-product-ribon-color-presentation-page';
 import { DashboardLandingPage } from '../pages/dashboard-page/dashboard-landing-page/dashboard-landing-page';
+import { ShowOneProductLandingPage } from '../pages/dashboard-page/product/show-one-product/show-one-product-landing-page/show-one-product-landing-page';
 
 export const routes: Routes = [
   {
@@ -36,12 +37,15 @@ export const routes: Routes = [
         path: '',
         component: DashboardLandingPage,
       },
-      { path: 'ribon-color',children: [
-        {
-          path: "",
-          component: RibonColorLandingPage
-        }
-      ]},
+      {
+        path: 'ribon-color',
+        children: [
+          {
+            path: '',
+            component: RibonColorLandingPage,
+          },
+        ],
+      },
       {
         path: 'ribon-color-set',
         children: [
@@ -63,16 +67,28 @@ export const routes: Routes = [
         children: [
           { path: 'create', component: CreateProductPage },
           {
-            path: 'edit/:id',
+            path: 'edit',
+            children: [{ path: '', component: EditProductPage }],
+          },
+          {
+            path: 'show-one/:id',
             children: [
-              { path: '', component: EditProductPage },
               {
-                path: 'product-ribon-color-presentation/create',
-                component: CreateProductRibonColorPresentationPage,
+                path: '',
+                component: ShowOneProductLandingPage,
               },
               {
-                path: 'product-ribon-color-presentation/edit',
-                component: EditProductRibonColorPresentationPage,
+                path: 'product-ribon-color-presentation',
+                children: [
+                  {
+                    path: 'edit',
+                    component: EditProductRibonColorPresentationPage,
+                  },
+                  {
+                    path: 'create',
+                    component: CreateProductRibonColorPresentationPage,
+                  },
+                ],
               },
             ],
           },
