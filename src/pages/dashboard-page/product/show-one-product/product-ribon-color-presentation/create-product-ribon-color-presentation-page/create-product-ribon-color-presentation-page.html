@@ -1,1 +1,15 @@
-<p>create-product-ribon-color-presentation-page works!</p>
+<main>
+  <div><app-breadcrumb [links]="breadCrumbLinks"></app-breadcrumb></div>
+  <div>
+    <form action="" (submit)="submit($event)">
+      <input (change)="selectImage($event)" type="file" name="" id="" />
+      <select [formControl]="ribonColorSetIdFormControl">
+        @if(ribonColorSetRessource$.hasValue()){ @for(ribonColor of
+        ribonColorSetRessource$.value().data; track ribonColor.id){
+        <option [value]="ribonColor.id">{{ribonColor.name}}</option>
+        } }
+      </select>
+      <button matButton="outlined">Create</button>
+    </form>
+  </div>
+</main>

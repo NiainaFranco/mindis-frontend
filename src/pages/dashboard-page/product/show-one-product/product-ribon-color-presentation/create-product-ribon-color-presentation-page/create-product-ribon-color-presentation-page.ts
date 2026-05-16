@@ -6,25 +6,17 @@ import { RouteInfoType, Status } from '../../../../../../types/route-info.type';
 import { NavigationService } from '../../../../../../service/navigation.service';
 import { ProductRibonColorPresentationService } from '../../../../../../service/product-ribon-color-presentation.service';
 import { firstValueFrom } from 'rxjs';
+import { Breadcrumb, BreadCrumbLinkType } from '../../../../../../components/breadcrumb/breadcrumb';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatAnchor, MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-create-product-ribon-color-presentation-page',
-  imports: [],
+  imports: [Breadcrumb, ReactiveFormsModule, MatAnchor, MatButton],
   templateUrl: './create-product-ribon-color-presentation-page.html',
   styleUrl: './create-product-ribon-color-presentation-page.css',
 })
 export class CreateProductRibonColorPresentationPage {
-  product!: GetProductType;
-  image?: File | null;
-  ribonColorSetId = signal('');
-  createProductRibonColorPresentation() {
-    if (this.product.id && this.ribonColorSetId().length > 0)
-      this.productRibonColorPresentationService.create({
-        productId: this.product.id,
-        image: this.image,
-        ribonColorSetId: this.ribonColorSetId(),
-      });
-  }
   constructor(
     private ribonColorSetService: RibonColorSetService,
     private productRibonColorPresentationService: ProductRibonColorPresentationService,
@@ -35,9 +27,11 @@ export class CreateProductRibonColorPresentationPage {
     const state = router.currentNavigation()?.extras.state;
     const id = activatedRoute.snapshot.paramMap.get('id');
     if (!state) {
-      const routeToGo = id ? ['dashboard', 'products', 'show-one', id] : ['dashboard', 'products'];
+      const routeToGoBack = id
+        ? ['dashboard', 'products', 'show-one', id]
+        : ['dashboard', 'products'];
       this.navigationService.navigate({
-        route: routeToGo,
+        route: routeToGoBack,
         routeInfo: {
           message: 'No product selected',
           status: Status.INFO,
@@ -47,6 +41,64 @@ export class CreateProductRibonColorPresentationPage {
     } else {
       const currentProduct = state['product'] as GetProductType;
       this.product = currentProduct;
+    }
+    this.breadCrumbLinks = [
+      {
+        order: 1,
+        routeName: 'Products',
+        routerLink: '/dashboard/products',
+      },
+      {
+        order: 2,
+        routeName: id!,
+        routerLink: '/dashboard/products/show-one/' + id,
+      },
+      {
+        order: 3,
+        routeName: 'Create product ribon color',
+      },
+    ];
+  }
+  breadCrumbLinks: BreadCrumbLinkType[];
+  product!: GetProductType;
+  image?: File | null;
+  ribonColorSetIdFormControl = new FormControl('');
+  submit(event: Event) {
+    event.preventDefault();
+    const ribonColorSetId = this.ribonColorSetIdFormControl.getRawValue() || '';
+    if (this.product.id && ribonColorSetId.length > 0)
+      this.productRibonColorPresentationService
+        .create({
+          productId: this.product.id,
+          image: this.image,
+          ribonColorSetId: ribonColorSetId,
+        })
+        .subscribe({
+          next: (created) => {
+            this.router.navigate(['dashboard', 'products', 'show-one', this.product.id], {
+              info: {
+                message: 'Product ribon color set created successfully',
+                status: Status.SUCCESS,
+              } as RouteInfoType,
+            });
+          },
+          error: () => {
+            this.router.navigate(['dashboard', 'products', 'show-one', this.product.id], {
+              info: {
+                message: 'An error occured',
+                status: Status.ERROR,
+              } as RouteInfoType,
+            });
+          },
+        });
+  }
+  selectImage(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const files = target.files;
+      if (files && files?.length > 0) {
+        this.image = files[0];
+      }
     }
   }
   page = signal(1);
